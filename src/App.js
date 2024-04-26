@@ -7,31 +7,35 @@ import { ButtonShadowClear } from './ButtonShadowClear';
 import { ButtonShadowEqual } from './ButtonShadowEqual';
 
 export const App = () => {
-	const [operand1, setOperand1] = useState('0');
+	const [operand1, setOperand1] = useState(0);
 	const [operator, setOperator] = useState('');
 	const [operand2, setOperand2] = useState('');
 	const [result, setResult] = useState('');
-	const [disableEquals, setDisableEquals] = useState(false);
-	console.log('Operator state is: ', operator);// operator state check-up
+
+	const isDisableEquals = !operand1 || !operand2 || !operator;
+	console.log('Operand1: ', operand1,'Operator: ', operator, 'Operand2: ', operand2);// input state check-up
 	
 	const NUMS = ['1','2','3','4','5','6','7','8','9','0','+','-','=','C'];
 			
 				// HandleDigitClick
 
-	const handleDigitClick = (number) => {
-		let newOperand = '';
-		
-		if(operator === '' && operand1 === '0' ) {
-			setOperand1(newOperand =+ number);
-			setDisableEquals(true);
-			
-		} else if(operator === '+' || operator === '-' ) {
-			setOperand2((newOperand) => (newOperand + number));
-			
-		
-		} else {setOperand1(operand1 + number);
+			const handleDigitClick = (number) => {
+					let newOperand = '';
+					
+					if(operator === '' && operand1 === 0 ) {
+						if(operand1 === 0) {
+							newOperand = number;
+						} else {setOperand1(newOperand += number);
+							}
+						
+						
+					} else if(operator === '+' || operator === '-' ) {
+						setOperand2((newOperand) => (newOperand + number));
+						
+					
+					} else {setOperand1(operand1 + number);
+						}
 			}
-	}
 	
 	const handleAdd = () => {
 		if(operator === '=') {
@@ -39,7 +43,7 @@ export const App = () => {
 			setOperand2('');
 		}
 		setOperator('+');
-		setDisableEquals(false);
+		
 	};
 	
 	const handleSubtract = () => {
@@ -48,7 +52,7 @@ export const App = () => {
 			setOperand2('');
 		}
 		setOperator('-');
-		setDisableEquals(false);
+		
 	};
 
 	const handleClear = () => {
@@ -56,7 +60,7 @@ export const App = () => {
 		setOperand2('');
 		setOperator('');
 		setResult('');
-		setDisableEquals(true);
+		
 		console.log("Cleared");
 	};
 	
@@ -80,8 +84,8 @@ export const App = () => {
 				
 		} else if (operator === '=' && !operand2 ) {
 			console.log('enter the number!'); 
-			setDisableEquals(true);	
-			setOperand1('0');
+			
+			setOperand1(0);
 			setOperand2('');
 			setOperator('=');		
 		} else {
@@ -91,7 +95,7 @@ export const App = () => {
 		};
 	
 	return ( 
-    <div className={styles['container']}>
+    <div className={styles.container}>
 
       							{/* DISPLAY */}
 
@@ -143,8 +147,9 @@ export const App = () => {
             	</tr>
 			  <tr>
 			  {NUMS.slice(12, 13).map((number) => (
-                  <td key={number} colSpan="2">
-                    <ButtonShadowEqual number={number} onClick={handleEquals} disabled={disableEquals} style={disableEquals ? { backgroundColor: '#b4b4b4' } : {}}/>
+                  <td key={number} colSpan="2" >
+                    <ButtonShadowEqual number={number} onClick={handleEquals} 
+					disabled={isDisableEquals} />
                   </td>
                 ))}
 				{NUMS.slice(13, 14).map((number) => (

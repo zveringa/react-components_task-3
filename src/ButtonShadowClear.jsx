@@ -17,7 +17,7 @@ export const ButtonShadowClear = ({ number, onClick }) => {
 
   return (
     <button
-      className={`${styles['calculator-clear']}`}
+      className={`${styles.calculatorClear}`}
       onClick={() => onClick(number)}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}

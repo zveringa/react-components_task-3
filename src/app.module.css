@@ -74,7 +74,7 @@
   background-color: #f6de53;
 }
 /* Add styles for the equal button */
-.calculator-equal {
+.calculatorEqual {
   background-color: hsl(120, 34%, 46%);
   color: rgb(3, 0, 100);
   width: 110px;
@@ -87,12 +87,12 @@
 	list-style-type: none;
 }
 
-.calculator-equal:hover {
+.calculatorEqual:hover {
   background-color: #18ce03; 
   }
 
   /* Add styles for the Clear button */
-.calculator-clear {
+.calculatorClear {
   background-color: #9f4e4e;
   color: rgb(3, 0, 100);
 	width: 50px;
@@ -106,9 +106,10 @@
 	list-style-type: none;
 }
 
-.calculator-clear:hover {
+.calculatorClear:hover {
   background-color: #f4511e; 
 }
+
 .operator-buttons {
   margin-top: 10px;
   display: grid;
@@ -131,6 +132,9 @@
 }
 .disabled{
   background-color: #b4b4b4;
+}
+.disabled:hover {
+  background-color: #c0bebe;
 }
 /* .button:hover {
 	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%);
